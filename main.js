@@ -24,7 +24,7 @@ const insertImageInCollection = function (src, imagesWrap) {
     let li, img;
     li = document.createElement("li");
     li.classList.add("character");
-    for (let x = 0; x < 3; x++) {
+    //for (let x = 0; x < 3; x++) {
         img = document.createElement("div");
         img.classList.add("image");
         img.style.backgroundImage = `url(${src})`;
@@ -33,7 +33,7 @@ const insertImageInCollection = function (src, imagesWrap) {
 
         li.appendChild(img);
         //console.log(x, img, "🌇")
-    }
+    //}
     imagesWrap.appendChild(li);
 }
 // Cargar los vídeos del servidor

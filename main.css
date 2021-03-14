@@ -32,7 +32,9 @@ img {
     transition: background-position-x ease-in 1s;
 }
 .character .image {
-    flex: 1 100%;
+    /* flex: 1 100%; */
+    width: 768px;
+    height: 1344px;
     background-repeat: no-repeat;
 
 }
@@ -52,6 +54,8 @@ img {
 
 /* Extra animations */
 .fireworks {
+    display: flex;
+    flex-flow: column wrap;
     position: absolute;
     top: 0;
     left: 0;
@@ -79,6 +83,10 @@ img {
     animation: fadeout ease-in 2s;
     opacity: 0;
     font-size: 1rem;
+}
+video {
+    width: 768px;
+    height: 1344px;
 }
 video.hide {
     display: none;
@@ -115,6 +123,7 @@ video.hide {
     display: none;
     position: absolute;
     bottom: 0;
+    right: 0;
 }
 #admin.active {
     display: block;
