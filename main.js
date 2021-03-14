@@ -13,6 +13,7 @@ const labelTotalKo = document.querySelector("#totalKo");
 
 let images = [];
 let imageActive = 0;
+let timeoutAutoFail = null;
 
 const videoCountdown = document.querySelector(".countdown");
 
@@ -91,6 +92,7 @@ const startCountDown = function () {
 
 
 const render = function (newActive, rightFeedback) {
+
     if (rightFeedback === true) {
         fireworks.classList.add("ok");
     }
@@ -133,25 +135,30 @@ const render = function (newActive, rightFeedback) {
     labelTotalKo.textContent = totalKo;
     imageActive = newActive;
 }
+const autoFail = function() {
+    window.clearTimeout(timeoutAutoFail);
+    timeoutAutoFail = window.setTimeout(ko, 3000);
+}
 
 const ok = function (e) {
-    console.log("ok", imageActive, images.length);
     const next = imageActive + 1;
     if (next <= images.length) {
         score.push('ok');
+        hideVideo();
         render(next, true);
+        autoFail();
     }
 }
 const ko = function (e) {
-    console.log("ko", imageActive);
     const next = imageActive + 1;
     if (next <= images.length) {
         score.push('ko');
+        hideVideo();
         render(next, false);
+        autoFail();
     }
 }
 const undo = function (e) {
-    console.log("undo", imageActive);
     const next = imageActive - 1;
     if (next >= 0) {
         score.pop();
@@ -165,8 +172,12 @@ const reset = function () {
     startCountDown();
     load();
 }
+const hideVideo = function () {
+    videoCountdown.classList.add("hide")
+    autoFail();
+}
 
-videoCountdown && videoCountdown.addEventListener("ended", e => e.target.classList.add("hide"));
+videoCountdown && videoCountdown.addEventListener("ended", hideVideo);
 
 // Formulario de administración
 admin.addEventListener("submit", e => e.preventDefault());
@@ -186,8 +197,14 @@ window.addEventListener("keydown", e => {
         case "k":
             ko();
             break;
-        case "z":
+        case "u":
             undo();
+            break;
+        case "s":
+            start();
+            break;
+        case "r":
+            reset();
             break;
     }
 });

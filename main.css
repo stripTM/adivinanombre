@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 ul, li {
     margin: 0;
@@ -43,7 +44,7 @@ img {
     /* background-position: 0 100vh; */
 }
 .character.visible.fromOk .image {
-    animation: fromOk ease-in 0.3s;
+    animation: fromOk ease-in 0.15s;
 }
 .character.visible.fromKo .image {
     animation: fromKo ease-in 0.3s;
@@ -94,13 +95,13 @@ video.hide {
 
 /* Entran desde la derecha */
 @keyframes fromOk {
-    0% { background-position-x: 34vw;}
-    100% { background-position-x: 0;}
+    0% { background-position-x: 768px; }
+    100% { background-position-x: 0; }
 }
 /* Entran desde arriba */
 @keyframes fromKo {
-    0% { background-position-y: -100vh;}
-    100% {background-position-y: 0;}
+    0% { background-position-y: -1344px; }
+    100% {background-position-y: 0; }
 }
 @keyframes error {
     0% { background-color: red ; opacity: 0; }
