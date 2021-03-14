@@ -1,0 +1,121 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+img {
+    display: inline-block;
+}
+.images {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+.fireworks.ok {
+    background-color: transparent;
+}
+.fireworks.ko {
+    background-color: transparent;
+    animation: error ease-in 0.3s;
+}
+.character {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    position: absolute;
+    transition: background-position-x ease-in 1s;
+}
+.character .image {
+    flex: 1 100%;
+    background-repeat: no-repeat;
+
+}
+.character.visible .image {
+    /* background-position: 34vw 0; */
+    /* background-position: 0 100vh; */
+}
+.character.visible.fromOk .image {
+    animation: fromOk ease-in 0.3s;
+}
+.character.visible.fromKo .image {
+    animation: fromKo ease-in 0.3s;
+}
+.character.visible {
+    opacity: 1;
+}
+
+/* Extra animations */
+.fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countdown .number {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 5rem;
+}
+.countdown .number.show {
+    animation: fadein ease-in 1s;
+}
+.countdown .number.hide {
+    animation: fadeout ease-in 2s;
+    opacity: 0;
+    font-size: 1rem;
+}
+video.hide {
+    display: none;
+}
+
+/* Entran desde la derecha */
+@keyframes fromOk {
+    0% { background-position-x: 34vw;}
+    100% { background-position-x: 0;}
+}
+/* Entran desde arriba */
+@keyframes fromKo {
+    0% { background-position-y: -100vh;}
+    100% {background-position-y: 0;}
+}
+@keyframes error {
+    0% { background-color: red ; opacity: 0; }
+    25% { background-color: red ; opacity: 1; }
+    100% { background-color: red ; opacity: 0; }
+}
+@keyframes fadein {
+    0% { opacity: 0; font-size: 5rem; }
+    10% { opacity: 1; font-size: 10rem; }
+    90% { opacity: 1; font-size: 10rem; }
+    100% { opacity: 0; font-size: 5rem; }
+}
+@keyframes fadeout {
+    from { opacity: 1; font-size: 10rem; }
+    to   { opacity: 0; font-size: 1rem; }
+}
+
+/* Administrator */
+#admin {
+    display: none;
+    position: absolute;
+    bottom: 0;
+}
+#admin.active {
+    display: block;
+}

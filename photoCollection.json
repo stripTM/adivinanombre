@@ -1,0 +1,53 @@
+{
+    "photoTime": 3000,
+    "photos": [
+        {
+            "src": "https://ipsumimage.appspot.com/320x800,ff7700?l=Imagen|primera",
+            "title": "foto 1"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800,ff0077?l=Imagen|segunda",
+            "title": "foto 2"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800,00ff77?l=Imagen|tercera",
+            "title": "foto 3"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800,77ff00?l=Imagen|cuarta",
+            "title": "foto 4"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800,7700ff?l=Imagen|quinta",
+            "title": "foto 5"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800,0077ff?l=Imagen|sexta",
+            "title": "foto 6"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800?l=Imagen|septima",
+            "title": "foto 7"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800?l=Imagen|octava",
+            "title": "foto 8"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800?l=Imagen|novena",
+            "title": "foto 9"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800?l=Imagen|decima",
+            "title": "foto 10"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800?l=Imagen|decimoprimera",
+            "title": "foto 11"
+        },
+        {
+            "src": "https://ipsumimage.appspot.com/320x800?l=Imagen|decimosegunda",
+            "title": "foto 12"
+        }
+    ]
+}

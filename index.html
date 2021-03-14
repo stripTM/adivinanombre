@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Adivina quién es</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+
+    <section class='wrap'>
+        <ul class='images'></ul>
+    </section>
+
+    <div class='fireworks'>
+        <video class="countdown" controls="off"/>
+    </div>
+
+    <!--
+    <div class='fireworks'>
+        <div class='countdown'>
+            <ul>
+                <li class='number'>3</li>
+                <li class='number'>2</li>
+                <li class='number'>1</li>
+            </ul>
+        </div>
+    </div>
+    -->
+    <form id='admin' class='active'>
+        <div>Ok:<span id="totalOk"></span> Fail:<span id="totalKo"></span> </div>
+        <input type='submit' name='a' value='ok' title='Respuesta correcta'/>
+        <input type='submit' name='a' value='ko' title='Respuesta erronea'/>
+        <input type='submit' name='a' value='undo' title='Deshacer'/>
+        <input type='submit' name='a' value='start' title='Start'/>
+        <input type='submit' name='a' value='reset' title='Reset'/>
+        <button class='close'>❌</button>
+    </form>
+    <script src='main.js'></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+    "photoTime": 3000,
+    "videoCountdown": "santiago_segura/fotos/fotos.001.webm",
+    "photos": [
+        {
+            "src": "santiago_segura/fotos/fotos.001.jpeg",
+            "title": "foto 1"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.002.jpeg",
+            "title": "foto 2"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.003.jpeg",
+            "title": "foto 3"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.004.jpeg",
+            "title": "foto 4"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.005.jpeg",
+            "title": "foto 5"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.006.jpeg",
+            "title": "foto 6"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.007.jpeg",
+            "title": "foto 7"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.008.jpeg",
+            "title": "foto 8"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.009.jpeg",
+            "title": "foto 9"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.010.jpeg",
+            "title": "foto 10"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.011.jpeg",
+            "title": "foto 11"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.012.jpeg",
+            "title": "foto 12"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.013.jpeg",
+            "title": "foto 13"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.014.jpeg",
+            "title": "foto 14"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.015.jpeg",
+            "title": "foto 15"
+        },
+        {
+            "src": "santiago_segura/fotos/fotos.016.jpeg",
+            "title": "foto 16"
+        }
+    ]
+}
