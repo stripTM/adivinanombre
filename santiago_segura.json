@@ -1,6 +1,7 @@
 {
     "photoTime": 3000,
     "videoCountdown": "santiago_segura/fotos/fotos.001.webm",
+    "videoEnd": "santiago_segura/fotos/final.webm",
     "photos": [
         {
             "src": "santiago_segura/fotos/fotos.001.jpeg",

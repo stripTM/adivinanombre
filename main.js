@@ -16,6 +16,7 @@ let imageActive = 0;
 let timeoutAutoFail = null;
 
 const videoCountdown = document.querySelector(".countdown");
+const videoEnd = document.querySelector(".end");
 
 const clearImageInCollection = function () {
     imagesWrap.innerHTML = '';
@@ -48,6 +49,8 @@ const load = function () {
             if (videoCountdown) {
                 videoCountdown.src = res.videoCountdown;
                 videoCountdown.classList.remove("hide");
+                videoEnd.src = res.videoEnd;
+                videoEnd.classList.add("hide");
             }
             // Asignar las fotos por primera vez
             photos = [];
@@ -83,7 +86,10 @@ const startCountDown = function () {
 }
 */
 const startCountDown = function () {
+    window.clearTimeout(timeoutAutoFail);
     if (videoCountdown) {
+        videoEnd.classList.add("hide");
+        videoEnd.pause();
         videoCountdown.classList.remove("hide");
         videoCountdown.seek = 0;
         videoCountdown.play();
@@ -144,18 +150,24 @@ const ok = function (e) {
     const next = imageActive + 1;
     if (next <= images.length) {
         score.push('ok');
-        hideVideo();
+        hideCountdownVideo();
         render(next, true);
         autoFail();
+    }
+    else {
+        showEndVideo();
     }
 }
 const ko = function (e) {
     const next = imageActive + 1;
     if (next <= images.length) {
         score.push('ko');
-        hideVideo();
+        hideCountdownVideo();
         render(next, false);
         autoFail();
+    }
+    else {
+        showEndVideo();
     }
 }
 const undo = function (e) {
@@ -172,12 +184,17 @@ const reset = function () {
     startCountDown();
     load();
 }
-const hideVideo = function () {
+const hideCountdownVideo = function () {
     videoCountdown.classList.add("hide")
     autoFail();
 }
+const showEndVideo = function () {
+    videoEnd.play();
+    videoEnd.loop = true;
+    videoEnd.classList.remove("hide")
+}
 
-videoCountdown && videoCountdown.addEventListener("ended", hideVideo);
+videoCountdown && videoCountdown.addEventListener("ended", hideCountdownVideo );
 
 // Formulario de administración
 admin.addEventListener("submit", e => e.preventDefault());

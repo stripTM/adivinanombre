@@ -64,6 +64,7 @@ img {
     height: 100vh;
     pointer-events: none;
 }
+/*
 .countdown {
     display: flex;
     justify-content: center;
@@ -85,6 +86,7 @@ img {
     opacity: 0;
     font-size: 1rem;
 }
+*/
 video {
     width: 768px;
     height: 1344px;
