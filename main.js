@@ -14,6 +14,7 @@ const labelTotalKo = document.querySelector("#totalKo");
 let images = [];
 let imageActive = 0;
 let timeoutAutoFail = null;
+let timeoutInterval = 3000;
 
 const videoCountdown = document.querySelector(".countdown");
 const videoEnd = document.querySelector(".end");
@@ -60,6 +61,9 @@ const load = function () {
             images = document.querySelectorAll(".images .character");
             imageActive = 0;
             score.length = 0;
+
+            timeoutInterval = res.photoTime;
+
             render(imageActive);
         }
     });
@@ -144,7 +148,7 @@ const render = function (newActive, rightFeedback) {
 }
 const autoFail = function() {
     window.clearTimeout(timeoutAutoFail);
-    timeoutAutoFail = window.setTimeout(ko, 3000);
+    timeoutAutoFail = window.setTimeout(ko, timeoutInterval);
 }
 
 const next = function (response, nextActive) {
