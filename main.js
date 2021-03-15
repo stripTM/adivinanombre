@@ -21,21 +21,16 @@ const videoEnd = document.querySelector(".end");
 const clearImageInCollection = function () {
     imagesWrap.innerHTML = '';
 }
-// Crea 3 imágenes y las mete en la colección
 const insertImageInCollection = function (src, imagesWrap) {
     let li, img;
     li = document.createElement("li");
     li.classList.add("character");
-    //for (let x = 0; x < 3; x++) {
-        img = document.createElement("div");
-        img.classList.add("image");
-        img.style.backgroundImage = `url(${src})`;
-        // img.setAttribute("src", src);
-        // img.setAttribute("alt", x+"Foto de personaje");
 
-        li.appendChild(img);
-        //console.log(x, img, "🌇")
-    //}
+    img = document.createElement("div");
+    img.classList.add("image");
+    img.style.backgroundImage = `url(${src})`;
+
+    li.appendChild(img);
     imagesWrap.appendChild(li);
 }
 // Cargar los vídeos del servidor
@@ -47,8 +42,12 @@ const load = function () {
     }).then(function (res) {
         if (res && res.photos) {
             if (videoCountdown) {
+                videoCountdown.muted = true;
+                videoCountdown.pause();
                 videoCountdown.src = res.videoCountdown;
                 videoCountdown.classList.remove("hide");
+                videoEnd.muted = true;
+                videoEnd.pause();
                 videoEnd.src = res.videoEnd;
                 videoEnd.classList.add("hide");
             }
@@ -89,8 +88,10 @@ const startCountDown = function () {
     window.clearTimeout(timeoutAutoFail);
     if (videoCountdown) {
         videoEnd.classList.add("hide");
+        videoEnd.muted = true;
         videoEnd.pause();
         videoCountdown.classList.remove("hide");
+        videoCountdown.muted = true;
         videoCountdown.seek = 0;
         videoCountdown.play();
     }
@@ -146,31 +147,24 @@ const autoFail = function() {
     timeoutAutoFail = window.setTimeout(ko, 3000);
 }
 
-const ok = function (e) {
-    const next = imageActive + 1;
-    if (next <= images.length) {
-        score.push('ok');
+const next = function (response, nextActive) {
+    if (nextActive < images.length) {
+        score.push(response ? 'ok' : 'ko');
         hideCountdownVideo();
-        render(next, true);
+        render(nextActive, response);
         autoFail();
     }
     else {
         showEndVideo();
     }
 }
-const ko = function (e) {
-    const next = imageActive + 1;
-    if (next <= images.length) {
-        score.push('ko');
-        hideCountdownVideo();
-        render(next, false);
-        autoFail();
-    }
-    else {
-        showEndVideo();
-    }
+const ok = function () {
+    next(true, imageActive + 1);
 }
-const undo = function (e) {
+const ko = function () {
+    next(false, imageActive + 1);
+}
+const undo = function () {
     const next = imageActive - 1;
     if (next >= 0) {
         score.pop();
