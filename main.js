@@ -13,7 +13,8 @@ const labelTotalKo = document.querySelector("#totalKo");
 
 let images = [];
 let imageActive = 0;
-let timeoutAutoFail = null;
+let timeoutAutoForward = null;
+let mode = "game"; // game | no-game
 let timeoutInterval = 3000;
 
 const videoCountdown = document.querySelector(".countdown");
@@ -46,14 +47,13 @@ const load = function () {
                 videoCountdown.muted = true;
                 videoCountdown.pause();
                 videoCountdown.src = res.videoCountdown;
-                videoCountdown.classList.remove("hide");
-                videoEnd.muted = true;
-                videoEnd.pause();
+                videoCountdown.classList.add("hide");
+
                 videoEnd.src = res.videoEnd;
-                videoEnd.classList.add("hide");
+                showEndVideo();
             }
             // Asignar las fotos por primera vez
-            photos = [];
+            imagesWrap.classList.add("hide");
             clearImageInCollection();
             res.photos.forEach(
                 item => insertImageInCollection(item.src, imagesWrap)
@@ -63,6 +63,7 @@ const load = function () {
             score.length = 0;
 
             timeoutInterval = res.photoTime;
+            mode = res.mode;
 
             render(imageActive);
         }
@@ -89,8 +90,9 @@ const startCountDown = function () {
 }
 */
 const startCountDown = function () {
-    window.clearTimeout(timeoutAutoFail);
+    window.clearTimeout(timeoutAutoForward);
     if (videoCountdown) {
+        imagesWrap.classList.remove("hide");
         videoEnd.classList.add("hide");
         videoEnd.muted = true;
         videoEnd.pause();
@@ -135,7 +137,7 @@ const render = function (newActive, rightFeedback) {
     );
     totalOk = totalKo = 0;
     score.forEach(res => {
-        if (res === 'ok') {
+        if (res === "ok") {
             totalOk++;
         }
         else {
@@ -146,26 +148,26 @@ const render = function (newActive, rightFeedback) {
     labelTotalKo.textContent = totalKo;
     imageActive = newActive;
 }
-const autoFail = function() {
-    window.clearTimeout(timeoutAutoFail);
-    timeoutAutoFail = window.setTimeout(ko, timeoutInterval);
+const autoForward = function() {
+    window.clearTimeout(timeoutAutoForward);
+    const note = mode === "no-game" ? noteOk : noteKo;
+    timeoutAutoForward = window.setTimeout(note, timeoutInterval);
 }
 
 const next = function (response, nextActive) {
     if (nextActive < images.length) {
-        score.push(response ? 'ok' : 'ko');
+        score.push(response ? "ok" : "ko");
         hideCountdownVideo();
         render(nextActive, response);
-        autoFail();
     }
     else {
         showEndVideo();
     }
 }
-const ok = function () {
+const noteOk = function () {
     next(true, imageActive + 1);
 }
-const ko = function () {
+const noteKo = function () {
     next(false, imageActive + 1);
 }
 const undo = function () {
@@ -183,12 +185,13 @@ const reset = function () {
     load();
 }
 const hideCountdownVideo = function () {
-    videoCountdown.classList.add("hide")
-    autoFail();
+    videoCountdown.classList.add("hide");
+    autoForward();
 }
 const showEndVideo = function () {
-    videoEnd.play();
+    videoEnd.muted = true;
     videoEnd.loop = true;
+    videoEnd.play();
     videoEnd.classList.remove("hide")
 }
 
@@ -196,8 +199,8 @@ videoCountdown && videoCountdown.addEventListener("ended", hideCountdownVideo );
 
 // Formulario de administración
 admin.addEventListener("submit", e => e.preventDefault());
-okButton.addEventListener("click", ok);
-koButton.addEventListener("click", ko);
+okButton.addEventListener("click", noteOk);
+koButton.addEventListener("click", noteKo);
 undoButton.addEventListener("click", undo);
 startButton.addEventListener("click", start);
 resetButton.addEventListener("click", reset);
@@ -207,10 +210,10 @@ closeButton.addEventListener("click", (e) => admin.classList.remove("active"));
 window.addEventListener("keydown", e => {
     switch (e.key) {
         case "o":
-            ok();
+            noteOk();
             break;
         case "k":
-            ko();
+            noteKo();
             break;
         case "u":
             undo();

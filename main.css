@@ -91,7 +91,7 @@ video {
     width: 768px;
     height: 1344px;
 }
-video.hide {
+.hide {
     display: none;
 }
 
