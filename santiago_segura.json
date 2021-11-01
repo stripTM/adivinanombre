@@ -1,6 +1,8 @@
 {
+    "comentario": "El mode pude ser game si cuando pasa el tiempo cuenta como fallo o no-game si cuenta como acierto",
     "mode": "no-game",
     "photoTime": 3000,
+    "videoStart": "santiago_segura/fotos/final.webm",
     "videoCountdown": "santiago_segura/fotos/fotos.001.webm",
     "videoEnd": "santiago_segura/fotos/final.webm",
     "photos": [

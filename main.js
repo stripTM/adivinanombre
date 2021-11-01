@@ -17,6 +17,7 @@ let timeoutAutoForward = null;
 let mode = "game"; // game | no-game
 let timeoutInterval = 3000;
 
+const videoStart = document.querySelector(".start");
 const videoCountdown = document.querySelector(".countdown");
 const videoEnd = document.querySelector(".end");
 
@@ -44,13 +45,15 @@ const load = function () {
     }).then(function (res) {
         if (res && res.photos) {
             if (videoCountdown) {
-                videoCountdown.muted = true;
+                videoStart.src = res.videoStart;
+                toggleVideo(videoStart, true);
+
                 videoCountdown.pause();
                 videoCountdown.src = res.videoCountdown;
                 videoCountdown.classList.add("hide");
 
                 videoEnd.src = res.videoEnd;
-                showEndVideo();
+                toggleVideo(videoEnd, false);
             }
             // Asignar las fotos por primera vez
             imagesWrap.classList.add("hide");
@@ -91,13 +94,12 @@ const startCountDown = function () {
 */
 const startCountDown = function () {
     window.clearTimeout(timeoutAutoForward);
+    imageActive = 0;
     if (videoCountdown) {
         imagesWrap.classList.remove("hide");
-        videoEnd.classList.add("hide");
-        videoEnd.muted = true;
-        videoEnd.pause();
+        toggleVideo(videoStart, false);
+        toggleVideo(videoEnd, false);
         videoCountdown.classList.remove("hide");
-        videoCountdown.muted = true;
         videoCountdown.seek = 0;
         videoCountdown.play();
     }
@@ -161,7 +163,7 @@ const next = function (response, nextActive) {
         render(nextActive, response);
     }
     else {
-        showEndVideo();
+        toggleVideo(videoEnd, true);
     }
 }
 const noteOk = function () {
@@ -188,11 +190,14 @@ const hideCountdownVideo = function () {
     videoCountdown.classList.add("hide");
     autoForward();
 }
-const showEndVideo = function () {
-    videoEnd.muted = true;
-    videoEnd.loop = true;
-    videoEnd.play();
-    videoEnd.classList.remove("hide")
+const toggleVideo = function ($video, visible) {
+    if (visible) {
+        $video.play();
+        $video.classList.remove("hide")
+    } else {
+        $video.pause();
+        $video.classList.add("hide")
+    }
 }
 
 videoCountdown && videoCountdown.addEventListener("ended", hideCountdownVideo );
