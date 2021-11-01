@@ -95,13 +95,26 @@ const startCountDown = function () {
 const startCountDown = function () {
     window.clearTimeout(timeoutAutoForward);
     imageActive = 0;
+    score.length = 0;
+
+
     if (videoCountdown) {
+
         imagesWrap.classList.remove("hide");
+        images.forEach(
+            (image, index) => {
+                if (index === 0) {
+                    image.classList.remove("fromOk", "fromKo");
+                } else {
+                    image.classList.remove("visible", "fromOk", "fromKo");
+                }
+            });
+
         toggleVideo(videoStart, false);
         toggleVideo(videoEnd, false);
-        videoCountdown.classList.remove("hide");
-        videoCountdown.seek = 0;
+        videoCountdown.currentTime = 0;
         videoCountdown.play();
+        videoCountdown.classList.remove("hide");
     }
 }
 
@@ -188,6 +201,7 @@ const reset = function () {
 }
 const hideCountdownVideo = function () {
     videoCountdown.classList.add("hide");
+    videoCountdown.currentTime = 0;
     autoForward();
 }
 const toggleVideo = function ($video, visible) {
@@ -197,6 +211,7 @@ const toggleVideo = function ($video, visible) {
     } else {
         $video.pause();
         $video.classList.add("hide")
+        $video.currentTime = 0;
     }
 }
 
